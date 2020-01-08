@@ -7,17 +7,27 @@
     <title>E-Sports</title>
     <link rel="stylesheet" href="css/indexStyle.css">
     <link rel="icon" href="images/sword.png">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script src="/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="DataTables-1.10.4/media/css/jquery.dataTables.min.css" />
+    <script src="DataTables-1.10.4/media/js/jquery.dataTables.min.js"></script>
+
     <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable();
+        $(document).ready(function(){
+            $(".zemlja_tabela").DataTable({
+                "columns": [
+                        { "title": "TimID" },
+                        { "title": "Naziv tima" }
+                    ],
+                "ajax": "server_obrada.php",
+                "processing": true,
+                "serverSide": true
+            });
         });
     </script>
-    -->
+
 </head>
 <body>
     <div class="nav">
@@ -33,9 +43,9 @@
         </ul>
     </div>
     <div class="banner">        
-        <h1>&#x2193</h1>
+        <h1></h1>
         <a href="#anchor" class="btn">
-        Get Started   
+            Get Started   
         </a>      
     </div>
     <div class="about">
@@ -46,7 +56,7 @@
         <br>
         <a name="anchor"></a>
         <h1><div class="logo"><span>e</span>Sports largest tournaments</div></h1>
-        <div class="projekti" style="background-image: url('images/css-lattice-pattern.png');">
+        <div class="projekti" style="background-image: url('/images/css-lattice-pattern.png');">
             <a name="anchor"></a>
             <div class="col-1-of-3 card">
                 <img src="images/dota2international.png" alt="international_2019">
@@ -65,6 +75,12 @@
             </div>
         </div>
     </div>
+
+    <table class="zemlja_tabela display" width="100%">
+    <tbody>
+    </tbody>
+    </table>
+
     <div class="footer">
         <div class="row">
             <div class="col-1-of-3">

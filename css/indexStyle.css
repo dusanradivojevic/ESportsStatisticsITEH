@@ -1,0 +1,232 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-image: url(images/css-lattice-pattern.png);
+}
+body .about{
+    background-image: url(images/css-lattice-pattern.png);
+}
+.nav{
+    height: 60px;
+    background-color: silver;
+    position: sticky;
+    top: 0;
+}
+.nav ul{
+    list-style-type: none;
+    float: left;
+}
+.nav ul li {
+    float: left;
+    padding: 0 25px;    
+}
+.nav ul li a{
+    color: black;
+    line-height: 60px;
+    text-decoration: none;
+    font-size: 22px;
+}
+.nav ul li a:hover{
+    animation-name: menjaBoju;
+    animation-duration: .4s;
+    animation-fill-mode: both;
+}
+.nav .logo{
+    float: left; 
+    width: 20%;
+    text-align: center;  
+    padding-top: 5px;
+}
+.nav .logo span {
+    color: darkorange;
+}
+
+.about .logo{
+    color: darkslategray;
+}
+.about .logo span {
+    color: darkorange;
+}
+
+.banner{
+    min-height: 80vh;
+    background-image: linear-gradient(rgba(0,0,0, .6),rgba(0,0,0,.6)),url(images/esportBaner.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    color: white;
+ }
+
+.banner h1{
+    padding: 20vh 0 60px 0;
+    font-size: 48px;
+    text-shadow: 2px 2px #1b1f23;
+}
+.banner .btn {
+    display: block;
+    width: 180px;
+    line-height: 50px;
+    border: 2px solid orange;
+    margin: 0 auto;
+    font-size: 22px;
+    text-shadow: 1px 1px black;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.banner .btn:hover{
+    background-color: rgb(255, 166, 5,0.6);
+    cursor: pointer;
+    animation: dugmeGore .5s ease-out forwards;
+}
+@keyframes menjaBoju{
+    0%{
+
+    }
+    100%{
+        color: white;
+    }
+}
+@keyframes dugmeGore{
+    0%{
+
+    }
+    100%{
+        transform: translateY(-10px);
+    }
+}
+@keyframes cardHover {
+    0%{
+
+    }
+    100%{
+        transform: translateY(-20px) scale(1.05);
+        box-shadow:5px 5px 9px 5px rgba(0,0,0,0.31);
+    }
+}
+
+.projekti img{
+    width: 100%;
+    height: 400px;
+}
+.projekti{
+    max-width: 1600px;
+    margin: 50px auto;
+    overflow: auto;
+    padding: 50px;
+}
+.col-1-of-3{
+    width: calc((100% - 200px) / 3);
+    float: left;    
+    list-style-type: none;
+}
+.projekti .card{
+    float: left;
+    border: 1px 0 1px 0 black solid;
+    color: black;
+    background-color: silver;
+    text-align: center;
+}
+.projekti .card:hover{
+    animation-name: cardHover;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    /* cursor: pointer; */
+}
+.projekti .card:not(:last-child){
+    margin-right: 100px;
+}
+.projekti .card h3{
+    margin: 10px 0 20px 0;
+    font-size: 27px;
+    color: darkslategray;
+    border: 1px white solid;
+}
+.projekti .card p{
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+.about h1{
+    text-align: center;
+    margin: 40px 0 50px 0;
+    font-size: 42px;
+}
+.footer{
+    background-color: #1b1f23;
+    color: white;
+    overflow: auto;
+    padding: 30px 0;
+}
+
+.footer .col-1-of-3{
+    padding-left: 30px;
+}
+
+.footer .col-1-of-3:last-child {
+    padding-left: 100px;    
+}
+
+.footer .col-1-of-3:last-child :hover{
+    cursor: pointer;
+}
+
+.footer .col-1-of-3:not(:last-child) {
+    margin-right: 100px;
+}
+.footer .row{
+    max-width: 1400px;
+    margin: auto;
+}
+.footer li:first-child{
+    border-top: 1px solid white;
+    padding-top: 10px;
+}
+.nav ul .hamburger{
+    display: none;
+}
+.nav ul .hamburger .bar{
+    width: 35px;
+    height: 4px;
+    background-color: white;
+}
+.nav ul li .bar:nth-child(2){
+    margin: 6px 0;
+}
+
+@media (max-width:768px){
+    .nav ul li{
+        display: none;
+    }
+    .nav ul .hamburger {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .projekti{
+        padding: 0;
+        margin: 0;
+    }
+    
+    .about .projekti .card{
+        float: none;
+        width: 95%;
+        margin: 20px auto;
+        padding: 0;
+    }
+    .footer .col-1-of-3{
+        float: none;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .footer{
+        height: auto;
+    }
+}

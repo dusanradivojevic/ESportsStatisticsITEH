@@ -6,8 +6,21 @@
 body{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+h1{
+    text-align: center;
+}
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 15px;
+    color: black;
+  } 
 body .about{
-    background-image: url('../images/css-lattice-pattern.png');
+    /* background-image: url('../images/css-lattice-pattern.png'); */
 }
 .nav{
     height: 60px;
@@ -45,7 +58,7 @@ body .about{
 }
 
 .about .logo{
-    color: silver;
+    color: black;
 }
 .about .logo span {
     color: darkorange;
@@ -61,7 +74,7 @@ body .about{
     color: silver;
  }
 
-.banner h1{
+.banner h1{    
     padding: 20vh 0 60px 0;
     font-size: 48px;
     text-shadow: 2px 2px #1b1f23;

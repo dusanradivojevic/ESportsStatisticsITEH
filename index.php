@@ -16,17 +16,73 @@
 
     <script>
         $(document).ready(function(){
-            $(".zemlja_tabela").DataTable({
+            $(".tim_tabela").DataTable({
                 "columns": [
-                        { "title": "TimID" },
-                        { "title": "Naziv tima" }
+                        { "title": "TeamID" },
+                        { "title": "Team name" }
                     ],
-                "ajax": "server_obrada.php",
+                "ajax": "php/tabela_tim_obrada.php",
                 "processing": true,
                 "serverSide": true
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function(){
+            $(".zemlja_tabela").DataTable({
+                "columns": [
+                        { "title": "CountryID" },
+                        { "title": "Country name" },
+                        { "title": "Short name" }
+                    ],
+                "ajax": "php/tabela_zemlja_obrada.php",
+                "processing": true,
+                "serverSide": true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $(".igra_tabela").DataTable({
+                "columns": [
+                        { "title": "GameID" },
+                        { "title": "Game name" },
+                        { "title": "Release year" }
+                    ],
+                "ajax": "php/tabela_igrica_obrada.php",
+                "processing": true,
+                "serverSide": true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $(".igraci_tabela").DataTable({
+                "columns": [
+                        { "title": "PlayerID" },
+                        { "title": "Name" },
+                        { "title": "Surname" },
+                        { "title": "Nickname" },
+                        { "title": "Birth year" },
+                        { "title": "Earnings ($)" },
+                        { "title": "Game" },
+                        { "title": "Country" },
+                        { "title": "Team" }
+                    ],
+                "ajax": "php/tabela_igrac_obrada.php",
+                "processing": true,
+                "serverSide": true
+            });
+        });
+    </script>
+
+
+
+
+
 
 </head>
 <body>
@@ -42,6 +98,7 @@
             <li><a href="#">Contact</a></li>
         </ul>
     </div>
+
     <div class="banner">        
         <h1></h1>
         <a href="#anchor" class="btn">
@@ -76,10 +133,34 @@
         </div>
     </div>
 
+    <h1>Teams</h1><br>
+    <table class="tim_tabela display" width="100%">
+    <tbody>
+    </tbody>
+    </table>
+    <hr>
+
+    <br><h1>Countries</h1><br>
     <table class="zemlja_tabela display" width="100%">
     <tbody>
     </tbody>
     </table>
+    <hr>
+
+    <br><h1>Games</h1><br>
+    <table class="igra_tabela display" width="100%">
+    <tbody>
+    </tbody>
+    </table>
+    <hr>
+
+    <br><h1>Players</h1><br>
+    <table class="igraci_tabela display" width="100%">
+    <tbody>
+    </tbody>
+    </table>
+    <hr>
+
 
     <div class="footer">
         <div class="row">

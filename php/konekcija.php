@@ -4,7 +4,6 @@
     $mysql_password = "";
     $mysql_db = "esports_iteh";
 
-    //$mysqli = new mysqli($mysql_server, $mysql_user, $mysql_password, $mysql_db);
     $link = mysqli_connect($mysql_server, $mysql_user, $mysql_password, $mysql_db);
 
     if (!$link) {

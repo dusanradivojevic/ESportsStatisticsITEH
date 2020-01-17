@@ -1,3 +1,10 @@
+<?php 
+
+    session_start();
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +13,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>E-Sports</title>
     <link rel="stylesheet" href="css/indexStyle.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <script src="js/modal.js"></script>
+
     <link rel="icon" href="images/sword.png">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -81,23 +91,23 @@
 
 
 
-
-
-
 </head>
 <body>
-    <div class="nav">
-        <div class="logo">
-            <a href="#" >
-                <img src="images/sword.png" alt="sword_logo" height="50" width="50">
-            </a>
-        </div>
-        <ul>
-            <li><a href="index.php">Homepage</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
+
+    <?php
+        if(isset($_SESSION['error'])){
+            ?>
+                <script>
+                    $(document).ready(function alertFunction() {
+                        //alert("Email or Password is invalid!");
+                    });
+                </script>
+            <?php
+        }
+    ?>
+
+
+    <?php include ('html/header.html'); ?>
 
     <div class="banner">        
         <h1></h1>
@@ -138,7 +148,55 @@
     <tbody>
     </tbody>
     </table>
+    <div class="crud">
+        <button id="insertBtn">Insert</button>
+        <button>Update</button>
+        <button>Delete</button>
+    </div>
     <hr>
+
+<!-- LOG IN FORM -->
+    <?php
+       // include ('php/session.php');
+        if(!isset($_SESSION['login_user'])){
+        ?>
+        <button class="open-button" onclick="openLoginForm()">Sign in</button>
+
+        <div class="form-popup" id="myLoginForm">
+            <form action="php/login.php" method="post" class="form-container">
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+
+                <label for="pw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="pw" required>
+
+                <button type="submit" class="btn" >Login</button>
+                <button type="button" class="btn cancel" onclick="closeLoginForm()">Close</button>
+            </form>
+        </div>
+        <?php
+        }
+        else{
+            ?>
+ <!-- LOG OUT FORM -->
+            <button class="open-button" onclick="openLogoutForm()" class="logoutBtn">Sign out</button>
+
+            <div class="form-popup" id="myLogoutForm">
+                <form action="php/logout.php" method="post" class="form-container">
+
+                    <button type="submit" class="btn" >Logout</button>
+                    <button type="button" class="btn cancel" onclick="closeLogoutForm()">Close</button>
+                </form>
+            </div>
+            
+            <?php
+        }
+            ?>
+    
+        
+
+
 
     <br><h1>Countries</h1><br>
     <table class="zemlja_tabela display" width="100%">
@@ -161,26 +219,21 @@
     </table>
     <hr>
 
+<!-- REGISTRATION FORM -->
+    <div class="form-popup" id="myRegistrationForm">
+        <form action="php/registration.php" method="post" class="form-container">
 
-    <div class="footer">
-        <div class="row">
-            <div class="col-1-of-3">
-                Adress: 
-                    <li>Blizzard Entertainment</li>
-                    <li>Irvine, California</li>
-                    <li>United States of America</li>
-                
-            </div>
-            <div class="col-1-of-3">
-                Contact: 
-                <li>blizzard@blizzard.com</li>
-            </div>
-            <div class="col-1-of-3">
-                <a href="#" >
-                <img src="images/sword.png" alt="sword_logo" height="100" width="100">
-                </a>
-            </div>
-        </div>      
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
+
+            <label for="pw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="pw" required>
+
+            <button type="submit" class="btn">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeRegistrationForm()">Close</button>
+        </form>
     </div>
+
+    <?php include ('html/footer.html'); ?>
 </body>
 </html>

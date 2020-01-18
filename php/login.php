@@ -1,5 +1,6 @@
 <?php
    include("konekcija.php");
+   include("../oop/korisnik.php");
    session_start();
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,6 +23,7 @@
             unset($_SESSION['error']);
          }
          
+         $_SESSION['korisnik_object'] = new Korisnik($email);
          $_SESSION['login_user'] = $email;
          header("location: ../index.php");
       }else {

@@ -1,0 +1,155 @@
+#insert-team-popup-form, 
+#update-team-popup-form,
+#delete-team-popup-form,
+#insert-country-popup-form, 
+#update-country-popup-form,
+#delete-country-popup-form,
+#insert-game-popup-form, 
+#update-game-popup-form,
+#delete-game-popup-form {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Fix the button on the left side of the page */
+.open-btn-table {
+    display: block;
+    width: 100%;
+    
+}
+/* Style and fix the button on the page */
+.open-button-table {
+    background-color: darkorange;
+    color: white;
+    padding: 12px 20px;
+    margin-right: 50px; 
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: relative;
+    float: left;
+}
+/* Hide the Popup form */
+.form-popup-insert-team, 
+.form-popup-update-team,
+.form-popup-delete-team,
+.form-popup-insert-country, 
+.form-popup-update-country,
+.form-popup-delete-country, 
+.form-popup-insert-game, 
+.form-popup-update-game,
+.form-popup-delete-game {
+    border: 2px solid #666;
+    z-index: 9;
+    max-width: 300px;
+    margin: 0 auto;
+}
+/* Styles for the form container */
+.form-container-insert-team, 
+.form-container-update-team,
+.form-container-delete-team,
+.form-container-insert-country, 
+.form-container-update-country,
+.form-container-delete-country,
+.form-container-insert-game, 
+.form-container-update-game,
+.form-container-delete-game  {
+    max-width: 300px;
+    padding: 20px;
+    background-color: #fff;
+}
+/* Full-width for input fields */
+.form-container-insert-team input[type=text],
+.form-container-update-team input[type=text],
+.form-container-delete-team input[type=text],
+.form-container-insert-country input[type=text],
+.form-container-update-country input[type=text],
+.form-container-delete-country input[type=text],
+.form-container-insert-game input[type=text],
+.form-container-update-game input[type=text],
+.form-container-delete-game input[type=text],
+.form-container-update-team input[type=number],
+.form-container-delete-team input[type=number],
+.form-container-update-country input[type=number],
+.form-container-delete-country input[type=number],
+.form-container-update-game input[type=number],
+.form-container-delete-game input[type=number],
+.form-container-insert-game input[type=number] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #eee;
+}
+/* When the inputs get focus, do something */
+.form-container-insert-team input[type=text]:focus, 
+.form-container-update-team input[type=text]:focus,
+.form-container-delete-team input[type=text]:focus,
+.form-container-insert-country input[type=text]:focus, 
+.form-container-update-country input[type=text]:focus,
+.form-container-delete-country input[type=text]:focus,
+.form-container-insert-game input[type=text]:focus, 
+.form-container-update-game input[type=text]:focus,
+.form-container-delete-game input[type=text]:focus,
+.form-container-update-team input[type=number]:focus,
+.form-container-delete-team input[type=number]:focus, 
+.form-container-update-country input[type=number]:focus,
+.form-container-delete-country input[type=number]:focus,
+.form-container-insert-game input[type=number]:focus, 
+.form-container-update-game input[type=number]:focus,
+.form-container-delete-game input[type=number]:focus   {
+    background-color: #ddd;
+    outline: none;
+}
+/* Style submit/login button */
+.form-container-insert-team .btn,
+.form-container-update-team .btn,
+.form-container-delete-team .btn,
+.form-container-insert-country .btn,
+.form-container-update-country .btn,
+.form-container-delete-country .btn,
+.form-container-insert-game .btn,
+.form-container-update-game .btn,
+.form-container-delete-game .btn  {
+    background-color: #8ebf42;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+/* Style cancel button */
+.form-container-insert-team .cancel,
+.form-container-update-team .cancel,
+.form-container-delete-team .cancel,
+.form-container-insert-country .cancel,
+.form-container-update-country .cancel,
+.form-container-delete-country .cancel,
+.form-container-insert-game .cancel,
+.form-container-update-game .cancel,
+.form-container-delete-game .cancel  {
+    background-color: #cc0000;
+}
+/* Hover effects for buttons */
+.form-container-insert-team .btn:hover,
+.form-container-update-team .btn:hover, 
+.form-container-delete-team .btn:hover,
+.form-container-insert-country .btn:hover,
+.form-container-update-country .btn:hover, 
+.form-container-delete-country .btn:hover, 
+.form-container-insert-game .btn:hover,
+.form-container-update-game .btn:hover, 
+.form-container-delete-game .btn:hover,
+.open-button-table:hover {
+    opacity: 1;
+}

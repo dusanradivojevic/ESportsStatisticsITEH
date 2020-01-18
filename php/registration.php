@@ -1,6 +1,6 @@
 <?php
-
     include("konekcija.php");
+    include("../oop/korisnik.php");
     session_start();
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -31,6 +31,7 @@
             $sql = "INSERT INTO korisnik VALUES ($id, '$email', '$password')";
 
             if(mysqli_query($link, $sql)) {
+                $_SESSION['korisnik_object'] = new Korisnik($email);
                 $_SESSION['login_user'] = $email;
                 header("location: ../index.php");
             }

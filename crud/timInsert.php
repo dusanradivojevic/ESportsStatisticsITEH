@@ -6,6 +6,7 @@
     if(isset($_SESSION['korisnik_object'])){
     //    $korisnik = $_SESSION['korisnik_object'];
         $korisnik = new Korisnik("");
+        $korisnik->email = $_SESSION['login_user'];
 
         $teamName = mysqli_real_escape_string($link, $_GET['teamName']);
         $teamName = trim($teamName, " ");

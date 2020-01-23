@@ -1,4 +1,4 @@
-// === TEAM ===
+
 function openForm(x) {
     document.getElementById(x).style.display="block";
 }

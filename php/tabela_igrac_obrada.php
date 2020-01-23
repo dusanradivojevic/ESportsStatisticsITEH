@@ -37,7 +37,7 @@
 
     require( '../DataTables-1.10.4/examples/server_side/scripts/ssp.class.php' );
 
-    //treba da se uhvati array kog vraca ssp simple i da se izmeni na mesta koja treba
+    //treba da se uhvati array kog vraca ssp simple i da se izmeni na mestima koja treba
     $data = SSP::simple( $_GET, $sql_details, $db_table, $primaryKey, $columns );
 
 
@@ -50,6 +50,7 @@
   
     
     // Changing json
+    // Game
     foreach ($data['data'] as $key => $entry) {
         $sql = "SELECT NazivIgre FROM igrica WHERE IgraID = " . $data['data'][$key]['6'];
         $result = $conn->query($sql);
@@ -63,7 +64,7 @@
             $data['data'][$key]['6'] = "Error";
         }       
     }
-
+    // Country
     foreach ($data['data'] as $key => $entry) {
         $sql = "SELECT Naziv FROM zemlja WHERE ZemljaID = " . $data['data'][$key]['7'];
         $result = $conn->query($sql);
@@ -77,7 +78,7 @@
             $data['data'][$key]['7'] = "Error";
         }   
     }
-
+    // Team
     foreach ($data['data'] as $key => $entry) {
         $sql = "SELECT NazivTima FROM tim WHERE TimID = " . $data['data'][$key]['8'];
         $result = $conn->query($sql);

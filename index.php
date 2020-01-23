@@ -144,7 +144,7 @@
        // include ('php/session.php');
         if(!isset($_SESSION['login_user'])){
         ?>
-        <button class="open-button" onclick="openLoginForm()">Sign in</button>
+        <button class="open-button" onclick="openLoginForm('myLoginForm')">Sign in</button>
 
         <div class="form-popup" id="myLoginForm">
             <form action="php/login.php" method="post" class="form-container">
@@ -156,7 +156,7 @@
                 <input type="password" placeholder="Enter Password" name="pw" required>
 
                 <button type="submit" class="btn" >Login</button>
-                <button type="button" class="btn cancel" onclick="closeLoginForm()">Close</button>
+                <button type="button" class="btn cancel" onclick="closeLoginForm('myLoginForm')">Close</button>
             </form>
         </div>
         <?php
@@ -164,13 +164,13 @@
         else{
             ?>
  <!-- LOG OUT FORM -->
-            <button class="open-button" onclick="openLogoutForm()" class="logoutBtn">Sign out</button>
+            <button class="open-button" onclick="openLoginForm('myLogoutForm')" class="logoutBtn">Sign out</button>
 
             <div class="form-popup" id="myLogoutForm">
                 <form action="php/logout.php" method="post" class="form-container">
 
                     <button type="submit" class="btn" >Logout</button>
-                    <button type="button" class="btn cancel" onclick="closeLogoutForm()">Close</button>
+                    <button type="button" class="btn cancel" onclick="closeLoginForm('myLogoutForm')">Close</button>
                 </form>
             </div>
             
@@ -189,7 +189,7 @@
             <input type="password" placeholder="Enter Password" name="pw" required>
 
             <button type="submit" class="btn">Submit</button>
-            <button type="button" class="btn cancel" onclick="closeRegistrationForm()">Close</button>
+            <button type="button" class="btn cancel" onclick="closeLoginForm('myRegistrationForm')">Close</button>
         </form>
     </div>
     

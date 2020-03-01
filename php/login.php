@@ -25,9 +25,14 @@
          
          $_SESSION['korisnik_object'] = new Korisnik($email);
          $_SESSION['login_user'] = $email;
+         $_SESSION['success'] = "Successful login, welcome!";
+         
          header("location: ../index.php");
       }else {
-         $_SESSION['error'] = "Email or Password is invalid!";
+         if(isset($_SESSION['message'])){
+            unset($_SESSION['message']);
+         }
+         $_SESSION['error'] = "Invalid Email and Password!";
          header("location: ../index.php");
       }
    }

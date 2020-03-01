@@ -1,3 +1,6 @@
+#insert-player-popup-form,
+#update-player-popup-form,
+#delete-player-popup-form,
 #insert-team-popup-form, 
 #update-team-popup-form,
 #delete-team-popup-form,
@@ -38,6 +41,9 @@
     float: left;
 }
 /* Hide the Popup form */
+.form-popup-insert-player, 
+.form-popup-update-player,
+.form-popup-delete-player,
 .form-popup-insert-team, 
 .form-popup-update-team,
 .form-popup-delete-team,
@@ -53,6 +59,9 @@
     margin: 0 auto;
 }
 /* Styles for the form container */
+.form-container-insert-player, 
+.form-container-update-player,
+.form-container-delete-player,
 .form-container-insert-team, 
 .form-container-update-team,
 .form-container-delete-team,
@@ -67,6 +76,9 @@
     background-color: #fff;
 }
 /* Full-width for input fields */
+.form-container-insert-player input[type=text],
+.form-container-update-player input[type=text],
+.form-container-delete-player input[type=text],
 .form-container-insert-team input[type=text],
 .form-container-update-team input[type=text],
 .form-container-delete-team input[type=text],
@@ -80,6 +92,9 @@
 .form-container-delete-team input[type=number],
 .form-container-update-country input[type=number],
 .form-container-delete-country input[type=number],
+.form-container-insert-player input[type=number],
+.form-container-update-player input[type=number],
+.form-container-delete-player input[type=number],
 .form-container-update-game input[type=number],
 .form-container-delete-game input[type=number],
 .form-container-insert-game input[type=number] {
@@ -110,6 +125,9 @@
     outline: none;
 }
 /* Style submit/login button */
+.form-container-insert-player .btn,
+.form-container-update-player .btn,
+.form-container-delete-player .btn,
 .form-container-insert-team .btn,
 .form-container-update-team .btn,
 .form-container-delete-team .btn,
@@ -129,6 +147,9 @@
     opacity: 0.8;
 }
 /* Style cancel button */
+.form-container-insert-player .cancel,
+.form-container-update-player .cancel,
+.form-container-delete-player .cancel,
 .form-container-insert-team .cancel,
 .form-container-update-team .cancel,
 .form-container-delete-team .cancel,
@@ -141,6 +162,9 @@
     background-color: #cc0000;
 }
 /* Hover effects for buttons */
+.form-container-insert-player .btn:hover,
+.form-container-update-player .btn:hover, 
+.form-container-delete-player .btn:hover,
 .form-container-insert-team .btn:hover,
 .form-container-update-team .btn:hover, 
 .form-container-delete-team .btn:hover,

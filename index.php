@@ -2,7 +2,6 @@
 
     session_start();
 
-    
 ?>
 
 <!DOCTYPE html>
@@ -25,75 +24,14 @@
     <link rel="stylesheet" type="text/css" href="DataTables-1.10.4/media/css/jquery.dataTables.min.css" />
     <script src="DataTables-1.10.4/media/js/jquery.dataTables.min.js"></script>
 
+    <script src="js/datatables.js"></script>
     <script>
-        $(document).ready(function(){
-            $(".tim_tabela").DataTable({
-                "columns": [
-                        { "title": "TeamID" },
-                        { "title": "Team name" }
-                    ],
-                "ajax": "php/tabela_tim_obrada.php",
-                "processing": true,
-                "serverSide": true
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function(){
-            $(".zemlja_tabela").DataTable({
-                "columns": [
-                        { "title": "CountryID" },
-                        { "title": "Country name" },
-                        { "title": "Short name" }
-                    ],
-                "ajax": "php/tabela_zemlja_obrada.php",
-                "processing": true,
-                "serverSide": true
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function(){
-            $(".igra_tabela").DataTable({
-                "columns": [
-                        { "title": "GameID" },
-                        { "title": "Game name" },
-                        { "title": "Release year" }
-                    ],
-                "ajax": "php/tabela_igrica_obrada.php",
-                "processing": true,
-                "serverSide": true
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function(){
-            $(".igraci_tabela").DataTable({
-                "columns": [
-                        { "title": "PlayerID" },
-                        { "title": "Name" },
-                        { "title": "Surname" },
-                        { "title": "Nickname" },
-                        { "title": "Birth year" },
-                        { "title": "Earnings ($)" },
-                        { "title": "Game" },
-                        { "title": "Country" },
-                        { "title": "Team" }
-                    ],
-                "ajax": "php/tabela_igrac_obrada.php",
-                "processing": true,
-                "serverSide": true
-            });
-        });
-    </script>
-
-    
-
+        function alertFunction(a) {
+            alert(a);
+        }
+    </script>       
 </head>
-<body>
+<body>    
 
     <?php include ('html/header.html'); ?>
 
@@ -138,9 +76,9 @@
         </div>
     </div>
 
-<!-- LOG IN FORM -->
+    <p id="alert"></p>
+    <!-- LOG IN FORM -->
     <?php
-       // include ('php/session.php');
         if(!isset($_SESSION['login_user'])){
         ?>
         <button class="open-button" onclick="openLoginForm('myLoginForm')">Sign in</button>
@@ -158,26 +96,31 @@
                 <button type="button" class="btn cancel" onclick="closeLoginForm('myLoginForm')">Close</button>
             </form>
         </div>
+    <!-- LOG OUT FORM -->
         <?php
         }
         else{
-            ?>
- <!-- LOG OUT FORM -->
+            ?>    
+            <!-- <script>
+                document.getElementById("alert").innerHTML = window.alertFunction("Successful login, welcome!"); 
+            </script> -->
+            
             <button class="open-button" onclick="openLoginForm('myLogoutForm')" class="logoutBtn">Sign out</button>
 
             <div class="form-popup" id="myLogoutForm">
                 <form action="php/logout.php" method="post" class="form-container">
 
-                    <button type="submit" class="btn" >Logout</button>
+                <!-- on click js alert -->
+                    <button type="submit" class="btn" onclick="alertFunction('Goodbye!')">Logout</button>
                     <button type="button" class="btn cancel" onclick="closeLoginForm('myLogoutForm')">Close</button>
                 </form>
             </div>
-            
-            <?php
+        
+        <?php
         }
-            ?>
+        ?>
             
-<!-- REGISTRATION FORM -->
+    <!-- REGISTRATION FORM -->
     <div class="form-popup" id="myRegistrationForm">
         <form action="php/registration.php" method="post" class="form-container">
 
@@ -193,7 +136,7 @@
     </div>
     
         
-<!-- TABLES -->
+    <!-- TABLES -->
     <a name="teamAnchor"></a>
     <h1>Teams</h1><br>
     <table class="tim_tabela display" width="100%">
@@ -382,7 +325,89 @@
     <tbody>
     </tbody>
     </table>
-    <hr>
+    <div class="crud">
+        <!-- Insert form -->
+        <div class="open-btn-table">
+            <button class="open-button-table" onclick="openForm('insert-player-popup-form')">Insert</button>
+        </div>    
+        <div id="insert-player-popup-form" class="crudModal">
+            <div class="form-popup-insert-player" id="popupForm-insert-player">
+                <form action="crud/playerInsert.php" class="form-container-insert-player" method="get">
+                    <h2>Enter necessary information</h2>
+                    <label for="playerName"><b>Player name:</b></label>
+                    <input type="text" id="playerName" placeholder="Name of the player" name="playerName" required>
+                    <label for="playerSurname"><b>Last name:</b></label>
+                    <input type="text" id="playerSurname" placeholder="Surname of the player" name="playerSurname" required>
+                    <label for="playerNickname"><b>Nickname:</b></label>
+                    <input type="text" id="playerNickname" placeholder="Nickname of the player" name="playerNickname" required>
+                    <label for="birthYear"><b>Year of birth:</b></label>
+                    <input type="number" id="birthYear" placeholder="Year of birth" name="birthYear" required>
+                    <label for="earnings"><b>Overall earnings:</b></label>
+                    <input type="number" id="earnings" placeholder="In dollars ($)" name="earnings" required>
+                    <label for="playerGame"><b>Game:</b></label>
+                    <input type="text" id="playerGame" placeholder="Example: Dota 2" name="playerGame" required>
+                    <label for="playerCountry"><b>Country:</b></label>
+                    <input type="text" id="playerCountry" placeholder="Example: Izrael" name="playerCountry" required>
+                    <label for="playerTeam"><b>Team:</b></label>
+                    <input type="text" id="playerTeam" placeholder="Example: OG" name="playerTeam" required>
+                         
+                    <button type="submit" class="btn">Insert</button>
+                    <button type="button" class="btn cancel" onclick="closeForm('insert-player-popup-form')">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Update form -->
+        <div class="open-btn-table">
+            <button class="open-button-table" onclick="openForm('update-player-popup-form')">Update</button>
+        </div>
+        <div id="update-player-popup-form" class="crudModal">
+            <div class="form-popup-update-player" id="popupForm-update-player">
+                <form action="crud/playerUpdate.php" class="form-container-update-player" method="get">
+                    <h2>Enter necessary information</h2>
+                    <label for="playerID"><b>ID:</b></label>
+                    <input type="number" id="playerID" placeholder="ID" name="playerID" required>
+                    <label for="playerName"><b>Player name:</b></label>
+                    <input type="text" id="playerName" placeholder="Name of the player" name="playerName" required>
+                    <label for="playerSurname"><b>Last name:</b></label>
+                    <input type="text" id="playerSurname" placeholder="Surname of the player" name="playerSurname" required>
+                    <label for="playerNickname"><b>Nickname:</b></label>
+                    <input type="text" id="playerNickname" placeholder="Nickname of the player" name="playerNickname" required>
+                    <label for="birthYear"><b>Year of birth:</b></label>
+                    <input type="number" id="birthYear" placeholder="Year of birth" name="birthYear" required>
+                    <label for="earnings"><b>Overall earnings:</b></label>
+                    <input type="number" id="earnings" placeholder="In dollars ($)" name="earnings" required>
+                    <label for="playerGame"><b>Game:</b></label>
+                    <input type="text" id="playerGame" placeholder="Example: Dota 2" name="playerGame" required>
+                    <label for="playerCountry"><b>Country:</b></label>
+                    <input type="text" id="playerCountry" placeholder="Example: Izrael" name="playerCountry" required>
+                    <label for="playerTeam"><b>Team:</b></label>
+                    <input type="text" id="playerTeam" placeholder="Example: OG" name="playerTeam" required>
+
+                    <button type="submit" class="btn">Update</button>
+                    <button type="button" class="btn cancel" onclick="closeForm('update-player-popup-form')">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Delete form -->
+        <div class="open-btn-table">
+            <button class="open-button-table" onclick="openForm('delete-player-popup-form')">Delete</button>
+        </div>
+        <div id="delete-player-popup-form" class="crudModal">
+            <div class="form-popup-delete-player" id="popupForm-delete-player">
+                <form action="crud/playerDelete.php" class="form-container-delete-player" method="get">
+                    <h2>Enter necessary information</h2>
+                    <label for="playerID"><b>ID:</b></label>
+                    <input type="number" id="playerID" placeholder="ID" name="playerID" required>
+                    
+                    <button type="submit" class="btn">Delete</button>
+                    <button type="button" class="btn cancel" onclick="closeForm('delete-player-popup-form')">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
 
     <?php include ('html/footer.html'); ?>
 </body>

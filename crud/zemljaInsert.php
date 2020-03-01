@@ -4,7 +4,7 @@
     include ("../php/konekcija.php");
 
     if(isset($_SESSION['korisnik_object'])){
-    //    $korisnik = $_SESSION['korisnik_object'];
+  //      $korisnik = unserialize($_SESSION['korisnik_object']);
         $korisnik = new Korisnik("");
         $korisnik->email = $_SESSION['login_user'];
 

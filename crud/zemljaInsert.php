@@ -1,30 +1,33 @@
 <?php
     session_start();
     include ('../oop/korisnik.php');
-    include ("../php/konekcija.php");
+    // include ("../php/konekcija.php");
 
     if(isset($_SESSION['korisnik_object'])){
   //      $korisnik = unserialize($_SESSION['korisnik_object']);
         $korisnik = new Korisnik("");
         $korisnik->email = $_SESSION['login_user'];
 
-        $countryName = mysqli_real_escape_string($link, $_GET['countryName']);
+        $countryName = $_POST['countryName'];
         $countryName = trim($countryName, " ");
 
-        $shortCountryName = mysqli_real_escape_string($link, $_GET['shortCountryName']);
+        $shortCountryName = $_POST['shortCountryName'];
         $shortCountryName = trim($shortCountryName, " ");  
 
         $sql1 = "INSERT INTO zemlja VALUES(";
         $sql2 = ", '$countryName', '$shortCountryName')";
       
-        if($korisnik->dodavanje("zemlja", "ZemljaID", $sql1, $sql2)) {
-            header("location: ../index.php");
-        }
-        else{
-            header("location: ../neuspesan.php");
-        }
+        $status = $korisnik->dodavanje("zemlja", "ZemljaID", $sql1, $sql2);
+
+        echo json_encode([
+            "status" => $status ? 1 : 0,
+            "message" => $status ? "$countryName is successfully inserted!" : "An error has occured!"
+        ]);
     }
     else{
-        header("location: ../index.php");
+        echo json_encode([
+            "status" => 0,
+            "message" => "You are not logged in!"
+        ]);
     }
 ?>

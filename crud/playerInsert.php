@@ -1,63 +1,57 @@
 <?php
     session_start();
     include ('../oop/korisnik.php');
-    include ("../php/konekcija.php");
+    // include ("../php/konekcija.php");
 
     if(isset($_SESSION['korisnik_object'])){
     //    $korisnik = $_SESSION['korisnik_object'];
         $korisnik = new Korisnik(""); 
         $korisnik->email = $_SESSION['login_user'];       
 
-        $name = mysqli_real_escape_string($link, $_GET['playerName']);
+        $name = $_POST['name'];
         $name = trim($name, " ");
 
-        $surname = mysqli_real_escape_string($link, $_GET['playerSurname']);
+        $surname = $_POST['surname'];
         $surname = trim($surname, " ");
 
-        $nick = mysqli_real_escape_string($link, $_GET['playerNickname']);
+        $nick = $_POST['nick'];
         $nick = trim($nick, " ");
 
-        $year = mysqli_real_escape_string($link, $_GET['birthYear']);
+        $year =  $_POST['year'];
         $year = trim($year, " ");
 
-        $earnings = mysqli_real_escape_string($link, $_GET['earnings']);
+        $earnings = $_POST['earn'];
         $earnings = trim($earnings, " ");
 
-        $game = mysqli_real_escape_string($link, $_GET['playerGame']);
+        $game = $_POST['game'];
         $game = trim($game, " ");
 
         $gameID = $korisnik->citanje("igrica", "IgraID", "NazivIgre", "$game");
-        if($gameID == NULL){
-            header("location: ../index.php");
-        }
 
-        $country = mysqli_real_escape_string($link, $_GET['playerCountry']);
+        $country = $_POST['country'];
         $country = trim($country, " ");
 
         $countryID = $korisnik->citanje("zemlja", "ZemljaID", "Naziv", "$country");
-        if($countryID == null){
-            header("location: ../index.php");
-        }
 
-        $team = mysqli_real_escape_string($link, $_GET['playerTeam']);
+        $team = $_POST['team'];
         $team = trim($team, " ");
 
         $teamID = $korisnik->citanje("tim", "TimID", "NazivTima", "$team");
-        if($teamID == null){
-            header("location: ../index.php");
-        }
 
         $sql1 = "INSERT INTO igrac VALUES(";
         $sql2 = ", '$name', '$surname', '$nick', $year, $earnings, $gameID, $countryID, $teamID)";
       
-        if($korisnik->dodavanje("igrac", "IgracID", $sql1, $sql2)) {
-            header("location: ../index.php");
-        }
-        else{
-            // header("location: ../neuspesan.php");
-        }
+        $status = $korisnik->dodavanje("igrac", "IgracID", $sql1, $sql2);
+
+        echo json_encode([
+            "status" => $status ? 1 : 0,
+            "message" => $status ? "New player is successfully inserted!" : "An error has occured!"
+        ]);
     }
     else{
-        header("location: ../index.php");
+        echo json_encode([
+            "status" => 0,
+            "message" => "You are not logged in!"
+        ]);
     }
 ?>

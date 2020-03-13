@@ -6,9 +6,9 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       
-      $email = mysqli_real_escape_string($link, $_POST['email']);
+      $email = $_POST['email'];
       $email = trim($email, " ");
-      $password = mysqli_real_escape_string($link, $_POST['pw']); 
+      $password = $_POST['pw']; 
       $password = trim($password, " ");
       
       $sql = "SELECT KorisnikID FROM korisnik WHERE Email = '$email' and Password = '$password'";
@@ -27,13 +27,21 @@
          $_SESSION['login_user'] = $email;
          $_SESSION['success'] = "Successful login, welcome!";
          
-         header("location: ../index.php");
+         echo json_encode([
+            "status" => 1,
+            "message" => "Successful login, welcome!"
+        ]);
+         // header("location: ../index.php");
       }else {
          if(isset($_SESSION['message'])){
             unset($_SESSION['message']);
          }
          $_SESSION['error'] = "Invalid Email and Password!";
-         header("location: ../index.php");
+         echo json_encode([
+            "status" => 0,
+            "message" => "Invalid Email and Password!"
+        ]);
+         // header("location: ../index.php");
       }
    }
 ?>

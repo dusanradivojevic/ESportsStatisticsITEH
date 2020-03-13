@@ -1,30 +1,33 @@
 <?php
     session_start();
     include ('../oop/korisnik.php');
-    include ("../php/konekcija.php");
+    // include ("../php/konekcija.php");
 
     if(isset($_SESSION['korisnik_object'])){
     //    $korisnik = $_SESSION['korisnik_object'];
         $korisnik = new Korisnik(""); 
         $korisnik->email = $_SESSION['login_user'];       
 
-        $gameName = mysqli_real_escape_string($link, $_GET['gameName']);
+        $gameName = $_POST['gameName'];
         $gameName = trim($gameName, " ");
 
-        $releaseYear = mysqli_real_escape_string($link, $_GET['releaseYear']);
+        $releaseYear = $_POST['releaseYear'];
         $releaseYear = trim($releaseYear, " ");  
 
         $sql1 = "INSERT INTO igrica VALUES(";
         $sql2 = ", '$gameName', $releaseYear)";
       
-        if($korisnik->dodavanje("igrica", "IgraID", $sql1, $sql2)) {
-            header("location: ../index.php");
-        }
-        else{
-            header("location: ../neuspesan.php");
-        }
+        $status = $korisnik->dodavanje("igrica", "IgraID", $sql1, $sql2);
+
+        echo json_encode([
+            "status" => $status ? 1 : 0,
+            "message" => $status ? "New game is successfully inserted!" : "An error has occured!"
+        ]);          
     }
     else{
-        header("location: ../index.php");
+        echo json_encode([
+            "status" => 0,
+            "message" => "You are not logged in!"
+        ]);
     }
 ?>

@@ -1,32 +1,35 @@
 <?php
     session_start();
     include ('../oop/korisnik.php');
-    include ("../php/konekcija.php");
+    // include ("../php/konekcija.php");
 
     if(isset($_SESSION['korisnik_object'])){
     //    $korisnik = $_SESSION['korisnik_object'];
         $korisnik = new Korisnik("");
         $korisnik->email = $_SESSION['login_user'];
         
-        $countryName = mysqli_real_escape_string($link, $_GET['countryName']);
+        $countryName = $_POST['countryName'];
         $countryName = trim($countryName, " ");
 
-        $shortCountryName = mysqli_real_escape_string($link, $_GET['shortCountryName']);
+        $shortCountryName = $_POST['shortCountryName'];
         $shortCountryName = trim($shortCountryName, " ");        
 
-        $countryID = mysqli_real_escape_string($link, $_GET['countryID']);
+        $countryID = $_POST['countryID'];
         $countryID = trim($countryID, " ");
 
         $sql = "UPDATE zemlja SET Naziv = '$countryName', SkraceniNaziv = '$shortCountryName' WHERE ZemljaID = $countryID";
       
-        if($korisnik->izmena($sql)) {
-            header("location: ../index.php");
-        }
-        else{
-            header("location: ../neuspesan.php");
-        }
+        $status = $korisnik->izmena($sql);
+
+        echo json_encode([
+            "status" => $status ? 1 : 0,
+            "message" => $status ? "Country is successfully updated!" : "An error has occured!"
+        ]);
     }
     else{
-        header("location: ../index.php");
+        echo json_encode([
+            "status" => 0,
+            "message" => "You are not logged in!"
+        ]);
     }
 ?>
